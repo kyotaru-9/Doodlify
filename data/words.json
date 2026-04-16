@@ -1,0 +1,74 @@
+{
+  "animals": [
+    "dog", "cat", "bird", "fish", "horse", "lion", "tiger", "bear", "elephant", "giraffe",
+    "monkey", "zebra", "cow", "pig", "sheep", "chicken", "duck", "rabbit", "mouse", "snake",
+    "frog", "turtle", "whale", "dolphin", "shark", "octopus", "crab", "lobster", "butterfly",
+    "bee", "ant", "spider", "bug", "worm", "caterpillar", "ladybug", "beetle",
+    "wolf", "fox", "deer", "owl", "eagle", "hawk", "parrot", "penguin", "camel", "llama",
+    "koala", "panda", "sloth", "bat", "raccoon", "squirrel", "chipmunk", "gorilla", " chimpanzee",
+    "kangaroo", "dinosaur", "dragonfly", "swan", "flamingo", "peacock", "ostrich", "seahorse",
+    "jellyfish", "starfish", "seal", "walrus", "polar bear", "snow leopard", "crocodile", "alligator",
+    "cobra", "viper", "anaconda", "scorpion", "centipede", "mosquito", "grasshopper", "firefly"
+  ],
+  "food": [
+    "apple", "banana", "orange", "grape", "strawberry", "blueberry", "cherry", "pineapple", "watermelon", "mango",
+    "peach", "pear", "plum", "kiwi", "lemon", "lime", "coconut", "avocado", "tomato", "cucumber",
+    "carrot", "potato", "onion", "garlic", "pepper", "broccoli", "corn", "spinach", "lettuce", "cabbage",
+    "mushroom", "eggplant", "celery", "asparagus", "zucchini", "pumpkin", "squash",
+    "bread", "rice", "pasta", "noodle", "cereal", "oatmeal", "pancake", "waffle", "bagel", "croissant",
+    "pizza", "burger", "sandwich", "hotdog", "taco", "burrito", "nachos", "quesadilla",
+    "chicken", "beef", "pork", "fish", "shrimp", "lobster", "crab", "steak", "sausage", "bacon",
+    "egg", "cheese", "milk", "yogurt", "butter", "cream", "ice cream", "cake", "cookie", "candy", "chocolate",
+    "donut", "pie", "muffin", "cupcake", "brownie", "jelly", "jam", "honey", "syrup", "popcorn",
+    "chips", "pretzel", "nuts", "almond", "peanut", "walnut", "cashew", "pistachio",
+    "coffee", "tea", "juice", "soda", "water", "milk shake", "smoothie", "beer", "wine", "cocktail"
+  ],
+  "objects": [
+    "chair", "table", "bed", "couch", "lamp", "clock", "book", "pen", "pencil", "phone",
+    "computer", "television", "radio", "camera", "mirror", "window", "door", "house", "key", "lock",
+    "box", "bag", "basket", "bottle", "cup", "plate", "fork", "knife", "spoon", "glass",
+    "car", "bicycle", "motorcycle", "airplane", "train", "bus", "boat", "ship", "truck", "ambulance",
+    "firetruck", "police car", "taxi", "scooter", "skateboard", "rocket", "spaceship",
+    "ball", "toy", "doll", "game", "puzzle", "book", "magazine", "newspaper", "card", "gift",
+    "ring", "necklace", "bracelet", "watch", "hat", "cap", "shoes", "boots", "coat", "shirt", "pants",
+    "dress", "skirt", "socks", "gloves", "scarf", "umbrella", "backpack", "purse", "wallet",
+    "guitar", "piano", "drum", "violin", "trumpet", "flute", "horn", "bell", "microphone", "speaker",
+    "hammer", "screwdriver", "wrench", "saw", "knife", "scissors", "ruler", "clipboard", "tape",
+    "chair", "desk", "shelf", "cabinet", "drawer", "mirror", "picture", "frame", "calendar", "clock",
+    "light switch", "outlet", "fan", "heater", "air conditioner", "vacuum", "broom", "mop", "bucket",
+    "sponge", "towel", "soap", "toothbrush", "comb", "brush", "mirror", "razor"
+  ],
+  "places": [
+    "house", "school", "hospital", "church", "park", "beach", "forest", "mountain", "river", "ocean",
+    "lake", "island", "desert", "garden", "zoo", "museum", "library", "restaurant", "store", "market",
+    "airport", "station", "bus stop", "port", "farm", "village", "city", "town", "street", "road", "highway",
+    "building", "tower", "bridge", "tunnel", "pool", "court", "stadium", "theater", "cinema", "office",
+    "kitchen", "bedroom", "bathroom", "living room", "basement", "attic", "garage", "yard",
+    "classroom", "gym", "playground", "hallway", "lobby", "restaurant", "cafe", "bar", "hotel",
+    "mall", "shop", "bakery", "barbershop", "salon", "bank", "post office", "police station",
+    "fire station", "hospital", "doctor office", "dentist office", "parking lot", "gas station",
+    "campground", "beach", "island", "cave", "jungle", "rainforest", "field", "meadow", "valley",
+    "hill", "cliff", "waterfall", "lake", "pond", "stream", "bridge", "fountain"
+  ],
+  "nature": [
+    "sun", "moon", "star", "cloud", "sky", "rain", "snow", "wind", "storm", "thunder",
+    "lightning", "rainbow", "flower", "tree", "grass", "leaf", "rock", "sand", "water", "fire",
+    "mountain", "valley", "river", "ocean", "lake", "pond", "stream", "waterfall", "cliff", "cave",
+    "beach", "island", "forest", "jungle", "desert", "tree", "bush", "plant", "seed", "fruit",
+    "apple", "orange", "lemon", "berry", "grape", "mango", "pineapple", "coconut", "banana", "peach",
+    "flower", "rose", "tulip", "daisy", "sunflower", "lily", "orchid", "cherry blossom",
+    "snowflake", "icicle", "frost", "mist", "fog", "hail", "storm", "tornado", "hurricane", "typhoon",
+    "earth", "planet", "galaxy", "universe", "mars", "venus", "jupiter", "saturn", "comet", "meteor",
+    "volcano", "earthquake", "tsunami", "flood", "drought", "avalanche", "landslide"
+  ],
+  "people": [
+    "person", "man", "woman", "child", "boy", "girl", "baby", "family", "mother", "father",
+    "sister", "brother", "friend", "teacher", "student", "doctor", "nurse", "police", "firefighter",
+    "chef", "artist", "singer", "dancer", "actor", "writer", "athlete", "coach",
+    "president", "king", "queen", "prince", "princess", "robot", "alien", "ghost", "superhero", "clown",
+    "magician", "pirate", "cowboy", "ninja", "soldier", "pilot", "astronaut", "scientist",
+    "inventor", "explorer", "detective", "judge", "lawyer", "farmer", "builder", "painter",
+    "musician", "composer", "director", "producer", "designer", "engineer", "architect", "doctor",
+    "driver", "pilot", "captain", "sailor", "guard", "prisoner", "king", "queen", "prince"
+  ]
+}

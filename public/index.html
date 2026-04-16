@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Doodlify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Sketchit';
+      src: url('resources/font/Sketchit Means Sketchit.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Scratch';
+      src: url('resources/font/Scratch.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg style="display: none;">
+    <defs>
+      <filter id="hand-drawn-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="handDrawnNoise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="handDrawnNoise2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="handDrawnNoiset">
+        <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="handDrawnNoiset2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+  <div class="marquee-bg">
+    <div class="marquee marquee-1">GUESS THE DRAWING • PLAY WITH FRIENDS • DRAW • GUESS • LAUGH • GUESS THE DRAWING • PLAY WITH FRIENDS • DRAW • GUESS • LAUGH • </div>
+    <div class="marquee marquee-2">🎨 DRAW • GUESS • WIN • 🎨 DRAW • GUESS • WIN • 🎨 DRAW • GUESS • WIN • 🎨 DRAW • GUESS • WIN • </div>
+    <div class="marquee marquee-3">FUN TIMES • CREATIVE FUN • ART GAME • FUN TIMES • CREATIVE FUN • ART GAME • FUN TIMES • CREATIVE FUN • ART GAME • </div>
+    <div class="marquee marquee-4">✏️ SKETCH • PAINT • CREATE ✏️ SKETCH • PAINT • CREATE ✏️ SKETCH • PAINT • CREATE ✏️ SKETCH • PAINT • CREATE ✏️ </div>
+  </div>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+<div class="login-card">
+          <svg class="logo-img" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          <h1 class="game-title">Doodlify</h1>
+          <p class="game-subtitle">A multiplayer drawing & guessing game</p>
+
+        <div class="login-form" id="join-form">
+          <div class="avatar-section">
+            <img id="avatar-preview" class="avatar-preview" src="" alt="Your avatar">
+            <button id="btn-refresh-avatar" class="btn btn-small" title="Random avatar">
+              <svg viewBox="0 0 24 24" class="hand-drawn-icon dice-icon">
+                <g transform="rotate(15, 12, 12)">
+                  <rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="7" cy="7" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+                  <circle cx="7" cy="12" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="12" r="1.5" fill="currentColor"/>
+                  <circle cx="7" cy="17" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="17" r="1.5" fill="currentColor"/>
+                </g>
+              </svg>
+              Random
+            </button>
+          </div>
+          <div class="form-group">
+            <input type="text" id="username-input" placeholder="Enter your username" maxlength="15" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <input type="text" id="room-code-input" placeholder="Room Code (e.g., ABC123)" maxlength="6" autocomplete="off">
+          </div>
+          <button id="btn-join" class="btn btn-primary">Join</button>
+          <p class="login-helper">New room? <button id="btn-switch-to-create" class="btn-link">Create</button></p>
+          <div class="login-footer">
+            <div class="social-links">
+              <a href="https://github.com/kyotaru-9" target="_blank" class="social-icon" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hand-drawn-icon">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/ekyovran/" target="_blank" class="social-icon" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hand-drawn-icon">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="login-form active" id="create-form">
+          <div class="avatar-section">
+            <img id="avatar-preview-create" class="avatar-preview" src="" alt="Your avatar">
+            <button id="btn-refresh-avatar-create" class="btn btn-small" title="Random avatar">
+              <svg viewBox="0 0 24 24" class="hand-drawn-icon dice-icon">
+                <g transform="rotate(15, 12, 12)">
+                  <rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="7" cy="7" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+                  <circle cx="7" cy="12" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="12" r="1.5" fill="currentColor"/>
+                  <circle cx="7" cy="17" r="1.5" fill="currentColor"/>
+                  <circle cx="17" cy="17" r="1.5" fill="currentColor"/>
+                </g>
+              </svg>
+              Random
+            </button>
+          </div>
+          <div class="form-group">
+            <input type="text" id="create-username-input" placeholder="Enter your username" maxlength="15" autocomplete="off">
+          </div>
+          <button id="btn-create" class="btn btn-primary">Create Room</button>
+          <div style="display: flex; align-items: center; gap: 12px; margin: 8px 0;">
+            <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+            <span style="color: var(--text-secondary); font-size: 12px;">or</span>
+            <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+          </div>
+          <button id="btn-play-random" class="btn btn-secondary">Play with Random</button>
+          <p class="login-helper">Have a room? <button id="btn-switch-to-join" class="btn-link">Join</button></p>
+          <div class="login-footer">
+            <div class="social-links">
+              <a href="https://github.com/kyotaru-9" target="_blank" class="social-icon" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hand-drawn-icon">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/ekyovran/" target="_blank" class="social-icon" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="hand-drawn-icon">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p id="login-error" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Room Screen -->
+    <div id="room-screen" class="screen">
+      <div class="room-header">
+        <div class="header-left">
+          <svg class="logo-img" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          <div class="room-title">Doodlify</div>
+        </div>
+        <div class="header-center">
+          <div class="mobile-timer hidden" id="mobile-timer">
+            <svg class="alarm-clock" viewBox="0 0 100 100">
+              <circle class="alarm-body" cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+              <path class="alarm-top" d="M35 18 L50 8 L65 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <line class="alarm-leg-left" x1="25" y1="90" x2="15" y2="100" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <line class="alarm-leg-right" x1="75" y1="90" x2="85" y2="100" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <circle class="alarm-center" cx="50" cy="50" r="3" fill="currentColor"/>
+              <line class="hour-hand" x1="50" y1="50" x2="50" y2="30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <line class="minute-hand" x1="50" y1="50" x2="70" y2="50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span id="mobile-timer-text" class="mobile-timer-text">60</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button id="btn-sound-toggle" class="btn btn-icon" title="Toggle Sound">
+            <svg id="sound-on-icon" class="hand-drawn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg id="sound-off-icon" class="hand-drawn-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+            </svg>
+          </button>
+          <button id="btn-leave-room" class="btn btn-small btn-danger">Leave</button>
+        </div>
+      </div>
+
+      <div class="room-content">
+        <!-- Waiting Room / Settings -->
+        <div id="waiting-room" class="panel">
+          <div class="panel-subtitle">Waiting Room</div>
+          <div class="room-code-display">
+            <span class="room-code-label">Room:</span>
+            <span id="display-room-code" class="room-code"></span>
+          </div>
+          <div id="player-list" class="player-list"></div>
+          
+          <div id="host-controls" class="host-controls hidden">
+            <h3>Room Settings</h3>
+            
+            <div class="settings-grid">
+              <div class="setting-item">
+                <label>Theme</label>
+                <select id="setting-theme">
+                  <option value="animals">Animals</option>
+                  <option value="food" selected>Food</option>
+                  <option value="objects">Objects</option>
+                  <option value="places">Places</option>
+                  <option value="nature">Nature</option>
+                  <option value="people">People</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label>Time per Round</label>
+                <select id="setting-time">
+                  <option value="30">30 seconds</option>
+                  <option value="60" selected>60 seconds</option>
+                  <option value="90">90 seconds</option>
+                  <option value="120">120 seconds</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label>Number of Rounds</label>
+                <select id="setting-rounds">
+                  <option value="1">1 round</option>
+                  <option value="3">3 rounds</option>
+                  <option value="5" selected>5 rounds</option>
+                  <option value="7">7 rounds</option>
+                  <option value="10">10 rounds</option>
+                </select>
+              </div>
+              
+              <div class="setting-item">
+                <label>Max Players</label>
+                <select id="setting-max-players">
+                  <option value="4">4 players</option>
+                  <option value="6" selected>6 players</option>
+                  <option value="8">8 players</option>
+                  <option value="10">10 players</option>
+                </select>
+              </div>
+            </div>
+            
+            <button id="btn-start-game" class="btn btn-primary btn-large">Start Game</button>
+          </div>
+          
+          <div id="non-host-message" class="non-host-message hidden">
+            <p>Waiting for host to start the game...</p>
+          </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-area" class="game-area hidden">
+          <div class="game-info-bar">
+            <div class="round-info">
+              <span id="current-round">Round 1/5</span>
+            </div>
+            <div class="drawer-info">
+              <span id="drawer-label">Drawer:</span>
+              <img id="drawer-avatar" class="drawer-avatar" src="" alt="Drawer avatar">
+              <span id="drawer-name"></span>
+            </div>
+          </div>
+
+          <div class="game-main">
+            <!-- Left: Scoreboard -->
+            <div class="scoreboard-panel panel">
+              <h3>Scoreboard</h3>
+              <div id="scoreboard" class="scoreboard"></div>
+            </div>
+
+            <!-- Center: Canvas -->
+            <div class="canvas-panel panel">
+              <div id="word-selection" class="word-selection hidden">
+                <h3>Choose a word to draw:</h3>
+                <div id="word-options" class="word-options"></div>
+              </div>
+
+              <div id="guesser-view" class="guesser-view">
+                <div class="word-hidden">
+                  <span class="blanks" id="word-blanks">_ _ _ _ _ _</span>
+                  <span class="word-length" id="word-length"></span>
+                </div>
+              </div>
+
+              <div id="canvas-container" class="canvas-container">
+                <canvas id="drawing-canvas" width="600" height="450"></canvas>
+              </div>
+
+              <div id="drawing-tools" class="drawing-tools hidden">
+                <div class="tool-selection">
+                  <button id="btn-tool-brush" class="tool-btn active" title="Brush Tool">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path fill="currentColor" d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/>
+                    </svg>
+                  </button>
+                  <button id="btn-tool-bucket" class="tool-btn" title="Fill Tool">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                      <path fill="currentColor" d="M12 7l-5 5h3v4h4v-4h3z"/>
+                    </svg>
+                  </button>
+                  <button id="btn-tool-eraser" class="tool-btn" title="Eraser Tool">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path fill="currentColor" d="M15.14 3c-.51 0-1.02.2-1.41.59l-7.14 7.14c-.78.78-.78 2.05 0 2.83l4.58 4.58c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.14-7.14c.78-.78.78-2.05 0-2.83l-4.58-4.58c-.39-.39-.9-.59-1.41-.59zm-6.5 10.24l5.66-5.66 1.76 1.76-5.66 5.66-1.76-1.76z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="tool-group">
+                  <label>Color:</label>
+                  <input type="color" id="color-picker" value="#000000">
+                </div>
+                <div class="tool-group" id="brush-size-group">
+                  <label>Size:</label>
+                  <input type="range" id="brush-size" min="2" max="20" value="5">
+                </div>
+                <button id="btn-clear" class="btn btn-small">Clear</button>
+                <button id="btn-undo" class="btn btn-small">Undo</button>
+              </div>
+            </div>
+
+            <!-- Right: Chat -->
+            <div class="right-panel">
+              <div class="chat-panel panel">
+                <h3>Guesses</h3>
+                <div id="chat-messages" class="chat-messages"></div>
+                <div class="chat-input">
+                  <input type="text" id="guess-input" placeholder="Type your guess..." maxlength="50" autocomplete="off">
+                  <span class="char-count" id="guess-char-count">0</span>
+                  <button id="btn-send-guess" class="btn btn-small btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Guess Input for Mobile -->
+        <div id="sticky-guess-bar" class="sticky-guess-bar hidden">
+          <input type="text" id="sticky-guess-input" placeholder="Type your guess..." maxlength="50" autocomplete="off">
+          <span class="char-count" id="sticky-char-count">0</span>
+          <button id="btn-sticky-send" class="btn btn-small btn-primary">Send</button>
+        </div>
+
+        <!-- Word Selection Overlay -->
+        <div id="word-selection-modal" class="modal hidden">
+          <div class="modal-content">
+            <div class="word-select-timer">
+              <span id="word-select-timer-text">10</span>s to choose
+            </div>
+            <h2>Choose a Word</h2>
+            <p>Pick one word to draw for your team!</p>
+            <div id="modal-word-options" class="word-options"></div>
+          </div>
+        </div>
+
+        <!-- Round End Overlay -->
+        <div id="round-end-modal" class="modal hidden">
+          <div class="modal-content">
+            <h2>Round Over!</h2>
+            <p id="round-result-word">The word was: <span id="revealed-word"></span></p>
+            <p>Drawer: <span id="round-drawer"></span></p>
+            <div id="round-scores" class="round-scores"></div>
+          </div>
+        </div>
+
+        <!-- Game End Overlay -->
+        <div id="game-end-modal" class="modal hidden">
+          <div class="modal-content">
+            <h2>Result</h2>
+            <div class="podium" id="podium">
+              <div class="podium-place" id="podium-2nd">
+                <span class="podium-rank">2</span>
+                <img class="podium-avatar" src="" alt="">
+                <span class="podium-name"></span>
+                <span class="podium-score"></span>
+              </div>
+              <div class="podium-place first" id="podium-1st">
+                <span class="podium-rank">1</span>
+                <img class="podium-avatar" src="" alt="">
+                <span class="podium-name"></span>
+                <span class="podium-score"></span>
+              </div>
+              <div class="podium-place" id="podium-3rd">
+                <span class="podium-rank">3</span>
+                <img class="podium-avatar" src="" alt="">
+                <span class="podium-name"></span>
+                <span class="podium-score"></span>
+              </div>
+            </div>
+            <div id="final-scores" class="final-scores"></div>
+            <button id="btn-play-again" class="btn btn-primary">Play Again</button>
+          </div>
+        </div>
+
+        <!-- Game Aborted Overlay -->
+        <div id="game-aborted-modal" class="modal hidden">
+          <div class="modal-content">
+            <h2>Game Ended</h2>
+            <p id="game-aborted-reason">Host left the game</p>
+            <button id="btn-game-aborted-ok" class="btn btn-primary">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
